@@ -33,13 +33,15 @@ namespace DBSpy
         private Label PortLabel;
         private Label UserLabel;
         private Label PasswordLabel;
+        private Label DatabasesLabel;
 
         //buttons
         private Button ExeButton;
+        private Button connectButton;
 
         //combo boxes
         private ComboBox databaseTypeCombo;
-        //private ComboBox databasesOnServerCombo;
+        private ComboBox databasesOnServerCombo;
 
         /// </summary>
         private System.ComponentModel.IContainer components = null;
@@ -133,10 +135,32 @@ namespace DBSpy
             //ExeButton
             this.ExeButton = new Button();
             this.ExeButton.Name = "ExeButton";
-            this.ExeButton.Text = "Execute";
+            this.ExeButton.Text = "Update";
             this.ExeButton.Font = new Font(this.textFont, this.fontSize - 3, FontStyle.Bold);
             this.ExeButton.Size = new Size(100, this.txtBoxHeight);
             this.ExeButton.Click += new System.EventHandler(this.UpdateDBSpy);
+
+            //databases label
+            this.DatabasesLabel = new Label();
+            this.DatabasesLabel.Font = this.txtFont;
+            this.DatabasesLabel.Text = "Databases:";
+            this.DatabasesLabel.AutoSize = true;
+
+            //DBs on Server
+            this.databasesOnServerCombo = new ComboBox();
+            this.databasesOnServerCombo.Name = "DatabasesOnServerCombo";
+            this.databasesOnServerCombo.Size = new Size(200, this.txtBoxHeight);
+            this.databasesOnServerCombo.TabIndex = 0;
+            this.databasesOnServerCombo.DropDownClosed += new System.EventHandler(this.DBToConnect);
+            this.databasesOnServerCombo.Refresh();
+
+            //connect button
+            this.connectButton = new Button();
+            this.connectButton.Name = "ConnectButton";
+            this.connectButton.Text = "Connect";
+            this.connectButton.Font = new Font(this.textFont, this.fontSize - 3, FontStyle.Bold);
+            this.connectButton.Size = new Size(100, this.txtBoxHeight);
+            this.connectButton.Click += new System.EventHandler(this.ConnectToDB);
 
             //Terminal
             this.Terminal = new TextBox();
@@ -144,8 +168,7 @@ namespace DBSpy
             this.Terminal.AcceptsTab = false;
             this.Terminal.Multiline = true;
             this.Terminal.ReadOnly = true;
-            this.Terminal.Size = new Size(this.formWidth - 20, this.formHeight - this.txtBoxHeight - 10);
-            this.Terminal.Location = new Point(10, this.txtBoxHeight + 1);
+            this.Terminal.Size = new Size(this.formWidth - 6, this.formHeight - (this.txtBoxHeight+3)*3 - 30);
 
             //form
             this.components = new System.ComponentModel.Container();
@@ -184,6 +207,9 @@ namespace DBSpy
 
             //adding controls to Flow Layout 3
             flowPanel3.Controls.Add(ExeButton);
+            flowPanel3.Controls.Add(DatabasesLabel);
+            flowPanel3.Controls.Add(databasesOnServerCombo);
+            flowPanel3.Controls.Add(connectButton);
 
             //adding controls to Table Layout
             tablePanel.Controls.Add(flowPanel1, 1, 1);

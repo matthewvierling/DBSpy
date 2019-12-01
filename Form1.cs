@@ -16,6 +16,7 @@ namespace DBSpy
         //Parameters
         private string[] databaseOptions = new string[]{"MySQL"};
         private string currentDatabaseType;
+        private string currentDatabase;
 
         public Form1()
         {
@@ -26,7 +27,8 @@ namespace DBSpy
         //returns the names of all the Databases on a MySQL Database
         private void UpdateDBSpy(object source, EventArgs e){
 
-            string conString = "", result = "";
+            string conString = "";
+            List<string> databases = new List<string>();
 
             //try to connect to server and read the tables
             try{
@@ -39,23 +41,27 @@ namespace DBSpy
 
                     using (MySqlCommand cmd = new MySqlCommand("SHOW DATABASES;", connection)){
 
-                        using (IDataReader dr = cmd.ExecuteReader())
-                        {
-                            //result = dr.Read().ToString();
-                            while (dr.Read())
-                            {
-                                result = result + dr[0].ToString() + ", ";
+                        using (IDataReader dr = cmd.ExecuteReader()){
+                            
+                            while (dr.Read()){
+                                databases.Add(dr[0].ToString());
                             }
                         }
                     }
                 }
             }
             catch(Exception ex){
-                result = ex.ToString();
+                MessageBox.Show(ex.ToString());
             }
             finally{
-                this.Terminal.Text = result;
+                this.databasesOnServerCombo.Items.AddRange(databases.ToArray());
+                this.databasesOnServerCombo.Refresh();
             }
+            
+        }
+
+        private void ConnectToDB(object source, EventArgs e){
+
             
         }
 
@@ -65,6 +71,17 @@ namespace DBSpy
             if(this.databaseTypeCombo.SelectedItem != null){
                 this.currentDatabaseType = this.databaseTypeCombo.SelectedItem.ToString();
             }
+
+        }
+
+        private void DBToConnect(object source, EventArgs e){
+            this.databaseTypeCombo.Refresh();
+
+            if(this.databasesOnServerCombo.SelectedItem != null){
+                this.currentDatabase = this.databasesOnServerCombo.SelectedItem.ToString();
+            }
+
+            this.Terminal.Text = this.currentDatabase;
 
         }
 
