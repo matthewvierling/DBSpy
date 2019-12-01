@@ -13,13 +13,18 @@ namespace DBSpy
 {
     public partial class Form1 : Form
     {
+        //Parameters
+        private string[] databaseOptions = new string[]{"MySQL"};
+        private string currentDatabaseType;
+
         public Form1()
         {
+            currentDatabaseType = databaseOptions[0];
             InitializeComponent();
         }
 
         //returns the names of all the Databases on a MySQL Database
-        private void ExecuteDBSpy(object source, EventArgs e){
+        private void UpdateDBSpy(object source, EventArgs e){
 
             string conString = "", result = "";
 
@@ -52,6 +57,15 @@ namespace DBSpy
                 this.Terminal.Text = result;
             }
             
+        }
+
+        private void ChangeDBType(object source, EventArgs e){
+            this.databaseTypeCombo.Refresh();
+
+            if(this.databaseTypeCombo.SelectedItem != null){
+                this.currentDatabaseType = this.databaseTypeCombo.SelectedItem.ToString();
+            }
+
         }
 
     }
