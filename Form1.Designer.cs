@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace DBSpy
 {
@@ -15,7 +14,7 @@ namespace DBSpy
         /// <summary>
 
         //size parameters
-        private int txtBoxHeight = 24;
+        private int txtBoxHeight;
         private string textFont = "Arial";
         private int fontSize = 14;
 
@@ -62,6 +61,7 @@ namespace DBSpy
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtBoxHeight = this.IPTextBox.Height;
             //IPText
             this.IPLabel = new Label();
             this.IPLabel.Font = new Font(this.textFont, this.fontSize, FontStyle.Regular);
@@ -156,42 +156,7 @@ namespace DBSpy
             this.Controls.Add(PasswordTextBox);
             this.Controls.Add(ExeButton);
             this.Controls.Add(Terminal);
-        }
-
-        private void ExecuteDBSpy(object source, EventArgs e){
-
-            string conString = "", result = "";
-
-            //try to connect to server and read the tables
-            try{
-
-                conString = "server=" + this.IPTextBox.Text + ";uid=" + this.UserTextBox.Text + ";pwd=" + this.PasswordTextBox.Text + ";";
-
-                using (MySqlConnection connection = new MySqlConnection(conString)){
-
-                    connection.Open();
-
-                    using (MySqlCommand cmd = new MySqlCommand("SHOW DATABASES;", connection)){
-
-                        using (IDataReader dr = cmd.ExecuteReader())
-                        {
-                            //result = dr.Read().ToString();
-                            while (dr.Read())
-                            {
-                                result = result + dr[0].ToString() + ", ";
-                            }
-                        }
-                    }
-                }
-            }
-            catch(Exception ex){
-                result = ex.ToString();
-            }
-            finally{
-                this.Terminal.Text = result;
-            }
-            
-        }
+        }      
 
         #endregion
     }
