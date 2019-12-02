@@ -168,8 +168,8 @@ namespace DBSpy
             this.Terminal.AcceptsTab = false;
             this.Terminal.Multiline = true;
             this.Terminal.ReadOnly = true;
-            this.Terminal.Size = new Size(this.formWidth - 6, this.formHeight - (this.txtBoxHeight+3)*3 - 30);
-            this.Terminal.Anchor = (AnchorStyles.Top|AnchorStyles.Bottom|AnchorStyles.Left);
+            this.Terminal.Size = new Size(this.formWidth - 20, this.formHeight - (this.txtBoxHeight+3)*3 - 30);
+            this.Terminal.Dock = DockStyle.Fill;
 
             //form
             this.components = new System.ComponentModel.Container();
@@ -179,20 +179,23 @@ namespace DBSpy
 
             //flow panel1
             FlowLayoutPanel flowPanel1 = new FlowLayoutPanel();
-            flowPanel1.Size = new Size(this.formWidth, this.txtBoxHeight+3);
+            flowPanel1.Size = new Size(this.formWidth-6, this.txtBoxHeight+3);
+            flowPanel1.Dock = DockStyle.Left;
 
             //flow Panel 2
             FlowLayoutPanel flowPanel2 = new FlowLayoutPanel();
-            flowPanel2.Size = new Size(this.formWidth, this.txtBoxHeight+3);
+            flowPanel2.Size = new Size(this.formWidth-6, this.txtBoxHeight+3);
+            flowPanel2.Dock = DockStyle.Left;
 
             //flow panel3
             FlowLayoutPanel flowPanel3 = new FlowLayoutPanel();
-            flowPanel3.Size = new Size(this.formWidth, this.txtBoxHeight+3);
+            flowPanel3.Size = new Size(this.formWidth-6, this.txtBoxHeight+3);
+            flowPanel2.Dock = DockStyle.Left;
 
             //table panel
             TableLayoutPanel tablePanel = new TableLayoutPanel();
             tablePanel.AutoSize = true;
-            tablePanel.Anchor = (AnchorStyles.Top|AnchorStyles.Bottom|AnchorStyles.Left);
+            tablePanel.Dock = DockStyle.Fill;
 
             //adding controls to Flow Layout 1
             flowPanel1.Controls.Add(databaseTypeCombo);            
