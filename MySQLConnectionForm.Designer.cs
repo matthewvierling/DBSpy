@@ -13,8 +13,8 @@ namespace DBSpy
     partial class MySQLConnectionForm
     {
         /// <summary>
-        int formWidth = 500;
-        int formHeight = 500;
+        int formWidth = 1000;
+        int formHeight = 700;
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 

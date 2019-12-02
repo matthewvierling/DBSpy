@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Threading;
 
 namespace DBSpy
 {
@@ -15,12 +16,12 @@ namespace DBSpy
     {
         //Parameters
         private string[] databaseOptions = new string[]{"MySQL"};
-        private string currentDatabaseType;
+        private string currentDBServerType;
         private string currentDatabase;
 
         public Form1()
         {
-            currentDatabaseType = databaseOptions[0];
+            currentDBServerType = databaseOptions[0];
             InitializeComponent();
         }
 
@@ -49,9 +50,12 @@ namespace DBSpy
                         }
                     }
                 }
+                //clear terminal
+                this.Terminal.Text = "";
             }
             catch(Exception ex){
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
+                this.Terminal.Text = ex.ToString();
             }
             finally{
                 this.databasesOnServerCombo.Items.AddRange(databases.ToArray());
@@ -60,20 +64,27 @@ namespace DBSpy
             
         }
 
+        //called when the connect button is pressed.
         private void ConnectToDB(object source, EventArgs e){
 
-            
+            if(this.currentDBServerType == "MySQL"){
+                Thread thread = new Thread(StartMySQLConnectionForm);
+                thread.Start();
+            }
+                      
         }
 
-        private void ChangeDBType(object source, EventArgs e){
+        //called when database server type combo box is closed
+        private void ChangeDBServerType(object source, EventArgs e){
             this.databaseTypeCombo.Refresh();
 
             if(this.databaseTypeCombo.SelectedItem != null){
-                this.currentDatabaseType = this.databaseTypeCombo.SelectedItem.ToString();
+                this.currentDBServerType = this.databaseTypeCombo.SelectedItem.ToString();
             }
 
         }
 
+        //called when database selection combobox is closed
         private void DBToConnect(object source, EventArgs e){
             this.databaseTypeCombo.Refresh();
 
@@ -81,8 +92,16 @@ namespace DBSpy
                 this.currentDatabase = this.databasesOnServerCombo.SelectedItem.ToString();
             }
 
-            this.Terminal.Text = this.currentDatabase;
+        }
 
+        private void StartMySQLConnectionForm(){
+            try{
+                Application.Run(new MySQLConnectionForm(this.IPTextBox.Text, this.currentDatabase, this.UserTextBox.Text, this.PasswordTextBox.Text));
+            }
+            catch{
+                this.Terminal.Text = "MySQLConnectionForm failed to start.";
+            }
+            
         }
 
     }

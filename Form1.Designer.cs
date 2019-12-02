@@ -77,8 +77,8 @@ namespace DBSpy
             this.databaseTypeCombo.Size = new Size(100, this.txtBoxHeight);
             this.databaseTypeCombo.TabIndex = 0;
             this.databaseTypeCombo.Items.AddRange(this.databaseOptions);
-            this.databaseTypeCombo.SelectedItem = this.currentDatabaseType;
-            this.databaseTypeCombo.DropDownClosed += new System.EventHandler(this.ChangeDBType);
+            this.databaseTypeCombo.SelectedItem = this.currentDBServerType;
+            this.databaseTypeCombo.DropDownClosed += new System.EventHandler(this.ChangeDBServerType);
             this.databaseTypeCombo.Refresh();
 
             //IPText
@@ -169,6 +169,7 @@ namespace DBSpy
             this.Terminal.Multiline = true;
             this.Terminal.ReadOnly = true;
             this.Terminal.Size = new Size(this.formWidth - 6, this.formHeight - (this.txtBoxHeight+3)*3 - 30);
+            this.Terminal.Anchor = (AnchorStyles.Top|AnchorStyles.Bottom|AnchorStyles.Left);
 
             //form
             this.components = new System.ComponentModel.Container();
@@ -191,6 +192,7 @@ namespace DBSpy
             //table panel
             TableLayoutPanel tablePanel = new TableLayoutPanel();
             tablePanel.AutoSize = true;
+            tablePanel.Anchor = (AnchorStyles.Top|AnchorStyles.Bottom|AnchorStyles.Left);
 
             //adding controls to Flow Layout 1
             flowPanel1.Controls.Add(databaseTypeCombo);            
