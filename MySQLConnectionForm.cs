@@ -11,23 +11,44 @@ using MySql.Data.MySqlClient;
 
 namespace DBSpy
 {
-    public partial class MySQLConnectionForm : Form
+    public partial class MySQLConnectionForm : ConnectionForm
     {
-        private string server, database, uid, pwd;
         private MySqlConnection connection;
-        public MySQLConnectionForm(string server, string database, string userid, string password){
-            this.server = server;
-            this.database = database;
-            this.uid = userid;
-            this.pwd = password;
-            InitializeComponent();
+        public MySQLConnectionForm(string server, string database, string userid, string password):base(server, database, userid, password){
 
+            this.connectionCreated = this.CreateConnection();
+            this.connectionOpen = this.OpenConnection();
+            this.InitializeComponent();
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e){
-            base.OnFormClosing(e);
+        protected override bool CreateConnection(){
+            try{
+                //create connection
+                string connectionString = "server=" + this.server + "database=" + this.database + ";uid=" + this.uid + ";pwd=" + this.pwd + ";";
+                this.connection = new MySqlConnection(connectionString);
+                return true;
+            }catch(Exception e){
+                //connection failed
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
+
+        protected override bool OpenConnection(){
+            try{
+                //open connection
+                this.connection.Open();
+                return true;
+            }catch(Exception e){
+                //open connection failed
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+        }
+
+        protected override void CloseConnection(){
+            this.connection.Close();
             MessageBox.Show("closing.");
-            //free/close connections here
         }
 
     }

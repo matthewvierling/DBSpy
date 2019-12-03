@@ -6,14 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+
 
 namespace DBSpy
 {
-    partial class MySQLConnectionForm
+    partial class ConnectionForm
     {
         /// <summary>
-        
+        protected int formWidth = 1000;
+        protected int formHeight = 700;
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
@@ -40,12 +41,10 @@ namespace DBSpy
         {
 
             //form
-            // this.components = new System.ComponentModel.Container();
-            // this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            // this.ClientSize = new System.Drawing.Size(this.formWidth, this.formHeight);
-            // this.Text = "DBSpy";
-
-            //adding items to form
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(this.formWidth, this.formHeight);
+            this.Text = "DBSpyConnection";
 
         }
 
