@@ -14,7 +14,7 @@ namespace DBSpy
     public partial class MySQLConnectionForm : ConnectionForm
     {
         private MySqlConnection connection;
-        public MySQLConnectionForm(string server, string database, string userid, string password):base(server, database, userid, password){
+        public MySQLConnectionForm(string server, string port, string database, string userid, string password):base(server, port, database, userid, password){
 
             this.connectionCreated = this.CreateConnection();
             this.connectionOpen = this.OpenConnection();
@@ -24,7 +24,7 @@ namespace DBSpy
         protected override bool CreateConnection(){
             try{
                 //create connection
-                string connectionString = "server=" + this.server + "database=" + this.database + ";uid=" + this.uid + ";pwd=" + this.pwd + ";";
+                string connectionString = "server=" + this.server + "database=" + this.database + ";port=" + this.port + ";uid=" + this.uid + ";pwd=" + this.pwd + ";";
                 this.connection = new MySqlConnection(connectionString);
                 return true;
             }catch(Exception e){

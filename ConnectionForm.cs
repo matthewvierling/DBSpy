@@ -13,11 +13,12 @@ namespace DBSpy
     //class for all connection forms to inherit from to give consistancy and promode code reuse
     public abstract partial class ConnectionForm : Form
     {
-        protected string server, database, uid, pwd;
+        protected string server, port, database, uid, pwd;
         protected bool connectionCreated, connectionOpen;
 
-        public ConnectionForm(string server, string database, string userid, string password){
+        public ConnectionForm(string server, string port, string database, string userid, string password){
             this.server = server;
+            this.port = port;
             this.database = database;
             this.uid = userid;
             this.pwd = password;

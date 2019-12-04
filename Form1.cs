@@ -34,7 +34,7 @@ namespace DBSpy
             //try to connect to server and read the tables
             try{
 
-                conString = "server=" + this.IPTextBox.Text + ";uid=" + this.UserTextBox.Text + ";pwd=" + this.PasswordTextBox.Text + ";";
+                conString = "server=" + this.IPTextBox.Text + ";port=" + this.PortTextBox.Text + ";uid=" + this.UserTextBox.Text + ";pwd=" + this.PasswordTextBox.Text + ";";
 
                 using (MySqlConnection connection = new MySqlConnection(conString)){
 
@@ -96,7 +96,7 @@ namespace DBSpy
 
         private void StartMySQLConnectionForm(){
             try{
-                Application.Run(new MySQLConnectionForm(this.IPTextBox.Text, this.currentDatabase, this.UserTextBox.Text, this.PasswordTextBox.Text));
+                Application.Run(new MySQLConnectionForm(this.IPTextBox.Text, this.PortTextBox.Text, this.currentDatabase, this.UserTextBox.Text, this.PasswordTextBox.Text));
             }
             catch{
                 this.Terminal.Text = "MySQLConnectionForm failed to start.";
