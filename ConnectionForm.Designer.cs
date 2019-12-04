@@ -15,6 +15,7 @@ namespace DBSpy
         /// <summary>
         protected int formWidth = 1000;
         protected int formHeight = 700;
+        protected int headerHeight;
 
         //text boxed
         protected TextBox terminal;
@@ -22,6 +23,7 @@ namespace DBSpy
         //flow and table layout panels
         protected FlowLayoutPanel headerFlow;
         protected TableLayoutPanel mainTable;
+        protected TableLayoutPanel dataTable;
 
         //Table Display
         protected TableDisplay tableDisplay;
@@ -56,8 +58,15 @@ namespace DBSpy
             this.mainTable.AutoSize = true;
             this.mainTable.Dock = DockStyle.Fill;
 
+            //data table panel
+            this.dataTable = new TableLayoutPanel();
+            this.dataTable.AutoSize = true;
+            this.dataTable.Dock = DockStyle.Fill;
+
             //header flow panel
+            this.headerHeight = 30;
             this.headerFlow = new FlowLayoutPanel();
+            this.headerFlow.Size = new Size(10, this.headerHeight);
             this.headerFlow.Dock = DockStyle.Left;
 
             //terminal
@@ -66,11 +75,13 @@ namespace DBSpy
             this.terminal.AcceptsTab = false;
             this.terminal.Multiline = true;
             this.terminal.ReadOnly = true;
-            //this.Terminal.Size = new Size(this.formWidth - 20, this.formHeight - (this.txtBoxHeight+3)*3 - 30);
+            this.terminal.Size = new Size(100, 150);
+            //this.terminal.Anchor = AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Bottom;
             this.terminal.Dock = DockStyle.Fill;
 
             //adding items to form
             this.mainTable.Controls.Add(this.headerFlow, 1, 1);
+            this.mainTable.Controls.Add(this.dataTable, 1, 2);
             this.Controls.Add(this.mainTable);
 
         }

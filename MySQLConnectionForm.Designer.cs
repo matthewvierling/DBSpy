@@ -34,8 +34,8 @@ namespace DBSpy{
 
 
 
-            this.tableDisplay.Size = new Size(100, 450);
-            this.mainTable.Controls.Add(tableDisplay, 1, 2);
+            this.tableDisplay.Size = new Size(200, 450);
+            this.dataTable.Controls.Add(tableDisplay, 1, 1);
 
             this.mainTable.Controls.Add(this.terminal, 1, 3);
 
