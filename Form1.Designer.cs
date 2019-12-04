@@ -59,12 +59,6 @@ namespace DBSpy
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             //initializing private variables
@@ -118,7 +112,7 @@ namespace DBSpy
             this.UserTextBox.AcceptsReturn = false;
             this.UserTextBox.AcceptsTab = true;
             this.UserTextBox.Size = new Size(70, this.txtBoxHeight);
-            this.UserTextBox.Text = "root";
+            this.UserTextBox.Text = "testuser";
 
             //PasswordText
             this.PasswordLabel = new Label();
@@ -225,7 +219,6 @@ namespace DBSpy
             this.Controls.Add(tablePanel);
         }      
 
-        #endregion
     }
 }
 

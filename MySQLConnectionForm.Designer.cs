@@ -8,8 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace DBSpy
-{
+namespace DBSpy{
     partial class MySQLConnectionForm
     {
         /// <summary>
@@ -30,26 +29,18 @@ namespace DBSpy
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
 
-            //form
-            // this.components = new System.ComponentModel.Container();
-            // this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            // this.ClientSize = new System.Drawing.Size(this.formWidth, this.formHeight);
-            // this.Text = "DBSpy";
 
-            //adding items to form
+
+            this.tableDisplay.Size = new Size(100, 450);
+            this.mainTable.Controls.Add(tableDisplay, 1, 2);
+
+            this.mainTable.Controls.Add(this.terminal, 1, 3);
 
         }
 
-        #endregion
     }
 }
 

@@ -15,6 +15,17 @@ namespace DBSpy
         /// <summary>
         protected int formWidth = 1000;
         protected int formHeight = 700;
+
+        //text boxed
+        protected TextBox terminal;
+
+        //flow and table layout panels
+        protected FlowLayoutPanel headerFlow;
+        protected TableLayoutPanel mainTable;
+
+        //Table Display
+        protected TableDisplay tableDisplay;
+
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
@@ -31,12 +42,6 @@ namespace DBSpy
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
 
@@ -46,9 +51,30 @@ namespace DBSpy
             this.ClientSize = new System.Drawing.Size(this.formWidth, this.formHeight);
             this.Text = "DBSpyConnection";
 
+            //main table panel
+            this.mainTable = new TableLayoutPanel();
+            this.mainTable.AutoSize = true;
+            this.mainTable.Dock = DockStyle.Fill;
+
+            //header flow panel
+            this.headerFlow = new FlowLayoutPanel();
+            this.headerFlow.Dock = DockStyle.Left;
+
+            //terminal
+            this.terminal = new TextBox();
+            this.terminal.AcceptsReturn = false;
+            this.terminal.AcceptsTab = false;
+            this.terminal.Multiline = true;
+            this.terminal.ReadOnly = true;
+            //this.Terminal.Size = new Size(this.formWidth - 20, this.formHeight - (this.txtBoxHeight+3)*3 - 30);
+            this.terminal.Dock = DockStyle.Fill;
+
+            //adding items to form
+            this.mainTable.Controls.Add(this.headerFlow, 1, 1);
+            this.Controls.Add(this.mainTable);
+
         }
 
-        #endregion
     }
 }
 
