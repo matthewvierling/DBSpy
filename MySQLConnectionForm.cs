@@ -20,8 +20,40 @@ namespace DBSpy
             this.connectionOpen = this.OpenConnection();
 
             this.tableDisplay = new TableDisplay(this.database, this.getTableNames());
+            this.dataDisplay = new DataDisplay();
+            
+            //test code
+            this.dataDisplay.UpdateDataTable(this.getTableData());
+            //and test code
 
             this.InitializeComponent();
+        }
+
+        private DataTable getTableData(){
+            DataTable dataTable = new DataTable();
+
+            //test code
+            dataTable.Columns.Add("Col Test1");
+            dataTable.Columns.Add("Col Test2");
+            dataTable.Columns.Add("Col Test3");
+            dataTable.Columns.Add("Col Test4");
+            dataTable.Columns.Add("Col Test5");
+            dataTable.Columns.Add("Col Test6");
+            dataTable.Columns.Add("Col Test7");
+            dataTable.Columns.Add("Col Test8");
+
+            DataRow row1 = dataTable.NewRow();
+            row1["Col test1"] = "row1,1";
+            row1["Col test2"] = "row1,2";
+            row1["Col test3"] = "row1,3";
+            row1["Col test4"] = "row1,4";
+            row1["Col test5"] = "row1,5";
+            row1["Col test6"] = "row1,6";
+            dataTable.Rows.Add(row1);
+
+            //end test code
+
+            return dataTable;
         }
 
         private List<string> getTableNames(){

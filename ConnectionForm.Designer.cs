@@ -28,6 +28,9 @@ namespace DBSpy
         //Table Display
         protected TableDisplay tableDisplay;
 
+        //Data Display
+        protected DataDisplay dataDisplay;
+
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
@@ -82,6 +85,7 @@ namespace DBSpy
             //adding items to form
             this.mainTable.Controls.Add(this.headerFlow, 1, 1);
             this.mainTable.Controls.Add(this.dataTable, 1, 2);
+            this.mainTable.Controls.Add(this.terminal, 1, 3);
             this.Controls.Add(this.mainTable);
 
         }
