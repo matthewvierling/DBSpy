@@ -60,6 +60,9 @@ namespace DBSpy
         //method to override in derived classes to close the db connections being used
         protected abstract void CloseConnection();
 
+        //method to override in derived classes to update the datatable when the tree is double clicked.
+        protected abstract int UpdateDataTableOnDoubleClick();
+
         protected override void OnFormClosing(FormClosingEventArgs e){
             base.OnFormClosing(e);
             this.CloseConnection();

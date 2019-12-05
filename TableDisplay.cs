@@ -8,13 +8,18 @@ namespace DBSpy{
     public class TableDisplay : Panel{
 
         private List<TreeNode> tablesNode = new List<TreeNode>();
-        private TreeView tablesTree = new TreeView();
+        public TreeView tablesTree = new TreeView();
         private string currentDatabase;
-        public TableDisplay(string database, List<string> tables){
+        //function to execute on double click
+        private Func<int> functionToCallOnDoubleClick;
+        public TableDisplay(string database, List<string> tables, Func<int> method){
+
+            this.functionToCallOnDoubleClick = method;
 
             this.currentDatabase = database;
             this.CreateTablesNode(tables);
             this.tablesTree.Nodes.Add(new TreeNode(this.currentDatabase, tablesNode.ToArray()));
+            this.tablesTree.DoubleClick += new System.EventHandler(this.TableTreeClick);
             this.tablesTree.Dock = DockStyle.Fill;
 
             //adding tree to container
@@ -31,6 +36,10 @@ namespace DBSpy{
             }
 
             return;
+        }
+
+        private void TableTreeClick(object sender, EventArgs e){
+            int trash = this.functionToCallOnDoubleClick();
         }
     }
 
