@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace DBSpy{
 
-    public class TableDisplay : Panel{
+    public class TableDisplay : ContainerControl{
 
         private List<TreeNode> tablesNode = new List<TreeNode>();
         public TreeView tablesTree = new TreeView();
@@ -25,7 +25,7 @@ namespace DBSpy{
             //adding tree to container
             this.Controls.Add(this.tablesTree);
 
-            this.Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left;
+            //this.Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
         }
 

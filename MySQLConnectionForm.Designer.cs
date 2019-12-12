@@ -35,12 +35,16 @@ namespace DBSpy{
 
 
             this.tableDisplay.Size = new Size(200, 450);
-            this.dataTable.Controls.Add(this.tableDisplay, 1, 1);
+            ControlResizer resizer = new ControlResizer(this.tableDisplay);
+            resizer.Dock = DockStyle.Fill;
+            //resizer.Anchor = AnchorStyles.Bottom | AnchorStyles.Top | AnchorStyles.Left;
+
+            
+            this.dataTable.Controls.Add(resizer, 1, 1);
 
             //this.dataDisplay.Size = new Size(200,200);
             this.dataTable.Controls.Add(this.dataDisplay, 2, 1);
-
-
+            
         }
 
     }
